@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react'
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
-import Groq from "groq-sdk";
-import clsx from 'clsx';
 
 export default function Example({ open, setOpen, url }) {
     const [message, setMessage] = useState('')
     useEffect(() => {
         async function main() {
-            await fetch('http://localhost:3000/api/chat', {
+            await fetch('https://webscrap-backend.vercel.app/api/chat', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

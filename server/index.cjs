@@ -1,27 +1,26 @@
 require('dotenv').config()
 const express = require('express');
-const corsAnywhere = require('cors-anywhere');
 const Groq = require("groq-sdk");
 const cors = require('cors')
 const app = express();
 app.use(express.json())
+const allowedOrigins = ['https://webscrap-backend.vercel.app', 'https://webscrap-sigma.vercel.app'];
 
 app.use(cors({
-    origin: ['https://webscrap-sigma.vercel.app'], // Allow this origin
+    origin: function (origin, callback) {
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) === -1) {
+            const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+            return callback(new Error(msg), false);
+        }
+        return callback(null, true);
+    },
     credentials: true
 }));
 
-
-
-const PORT = process.env.PORT || 8080;
-
-corsAnywhere.createServer({
-    originWhitelist: [],
-    requireHeaders: [],
-    removeHeaders: [],
-}).listen(PORT, () => {
-    console.log(`CORS Anywhere server running on http://localhost:${PORT}`);
-});
+app.get('/', (req, resp) => {
+    resp.send('Server Started')
+})
 
 app.post('/api/chat', async (req, res) => {
     try {

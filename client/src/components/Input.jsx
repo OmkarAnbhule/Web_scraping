@@ -5,7 +5,6 @@ import { toast } from 'sonner';
 import { PulseLoader } from 'react-spinners';
 
 const App = ({ setProducts, setProductUrls }) => {
-  const api = import.meta.env.VITE_CORS_URL
   const [domain, setDomain] = useState('skininspired.in/');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false)
@@ -23,8 +22,7 @@ const App = ({ setProducts, setProductUrls }) => {
 
   const fetchRobotsTxt = async () => {
     try {
-      console.log(api)
-      const response = await axios.get(`${api}https://${domain}/robots.txt`);
+      const response = await axios.get(`https://${domain}/robots.txt`);
       parseRobotsTxt(response.data);
     } catch (err) {
       console.log(err);
@@ -48,7 +46,7 @@ const App = ({ setProducts, setProductUrls }) => {
 
   const fetchSitemap = async (sitemapUrl) => {
     try {
-      const response = await axios.get(`${api + sitemapUrl}`);
+      const response = await axios.get(`${sitemapUrl}`);
       parseSitemap(response.data);
     } catch (err) {
       console.log(err);
@@ -74,7 +72,7 @@ const App = ({ setProducts, setProductUrls }) => {
 
   const getProducts = async (url) => {
     try {
-      await axios.get(`${api}${url}`)
+      await axios.get(`${url}`)
         .then((response) => {
           parseProducts(response)
         })
