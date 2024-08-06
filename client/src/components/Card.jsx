@@ -16,7 +16,7 @@ const ProductComponent = ({ image, title, caption, url }) => {
     }, []);
 
     return (
-        <div className="md:w-1/2 w-full border-2 flex md:flex-nowrap flex-wrap flex-row hover:border-cyan-300">
+        <div className="md:w-1/2 w-full border-2 flex md:flex-nowrap flex-wrap flex-row">
             {loading ? (
                 <>
                     <Skeleton height={160} width={160} className="flex-none object-cover object-top rounded-t lg:rounded-t-none lg:rounded-l" />
@@ -34,7 +34,7 @@ const ProductComponent = ({ image, title, caption, url }) => {
                         src={image}
                         title={'image for ' + title}
                     />
-                    <div className="border-r w-full border-b border-l hover:bg-[rgba(255,255,255,0.53)] hover:backdrop-blur-md border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                    <div className="border-r w-full border-b border-l hover:border-cyan-300 hover:shadow-xl shadow-black hover:bg-[rgba(255,255,255,0.53)] hover:backdrop-blur-md border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                         <div className="mb-8">
                             <div className="text-gray-900 font-bold text-xl mb-2">{title}</div>
                             <p className="text-gray-700 text-base">{caption}</p>

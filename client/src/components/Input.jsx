@@ -4,10 +4,8 @@ import xml2js from 'xml2js';
 import { toast } from 'sonner';
 import { PulseLoader } from 'react-spinners';
 
-const App = ({ setProducts, setProductUrls }) => {
-  const [domain, setDomain] = useState('skininspired.in/');
-  const [error, setError] = useState('');
-  const [loading, setLoading] = useState(false)
+const App = ({ setProducts, setProductUrls, error, setError, loading, setLoading }) => {
+  const [domain, setDomain] = useState('');
 
   const handleInputChange = (e) => {
     let temp = e.target.value;
@@ -16,7 +14,6 @@ const App = ({ setProducts, setProductUrls }) => {
     } else if (temp.includes('http://')) {
       temp = temp.split('http://')[1];
     }
-    console.log(temp);
     setDomain(temp);
   };
 
@@ -25,8 +22,9 @@ const App = ({ setProducts, setProductUrls }) => {
       const response = await axios.get(`https://${domain}/robots.txt`);
       parseRobotsTxt(response.data);
     } catch (err) {
-      console.log(err);
+      console.log(err.code);
       toast.error('Error fetching robots.txt, check your domain')
+      setError('404')
       setLoading(false)
     }
   };
@@ -124,7 +122,6 @@ const App = ({ setProducts, setProductUrls }) => {
 
   return (
     <div className="flex flex-col p-4 items-center justify-center gap-4">
-      <h1 className='text-3xl font-semibold'>Product Scraper</h1>
       <form onSubmit={handleSubmit} className='flex justify-center w-4/5 gap-x-2'>
         <input
           type="text"
@@ -134,9 +131,8 @@ const App = ({ setProducts, setProductUrls }) => {
           onChange={handleInputChange}
           required
         />
-        <button type="submit" disabled={loading} className={`w-1/5 text-center flex justify-center hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ${loading ? 'bg-slate-600' : 'bg-blue-500'}`}>{loading ? <PulseLoader color='#ffffff' /> : 'Scrap'}</button>
+        <button type="submit" disabled={loading} className={`w-1/5 text-center flex justify-center hover:${loading ? 'cursor-not-allowed' : 'bg-blue-700'} text-white font-bold py-2 px-4 rounded ${loading ? 'bg-slate-600' : 'bg-blue-500'}`}>{loading ? <PulseLoader color='#ffffff' /> : 'Scrap'}</button>
       </form>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
     </div>
   );
 };

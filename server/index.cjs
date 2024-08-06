@@ -4,7 +4,7 @@ const Groq = require("groq-sdk");
 const cors = require('cors')
 const app = express();
 app.use(express.json())
-const allowedOrigins = ['https://webscrap-backend.vercel.app', 'https://webscrap-sigma.vercel.app'];
+const allowedOrigins = ['https://webscrap-backend.vercel.app', 'https://webscrap-sigma.vercel.app', 'http://localhost:5173'];
 
 app.use(cors({
     origin: function (origin, callback) {

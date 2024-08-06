@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react'
-import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
+import { useEffect, useState } from 'react';
+import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react';
 
 export default function Example({ open, setOpen, url }) {
-    const [message, setMessage] = useState('')
+    const [message, setMessage] = useState('');
+
     useEffect(() => {
         async function main() {
             await fetch('https://webscrap-backend.vercel.app/api/chat', {
@@ -14,11 +15,11 @@ export default function Example({ open, setOpen, url }) {
             })
                 .then((response) => response.json())
                 .then((response) => {
-                    setMessage(response.message)
-                })
+                    setMessage(response.message);
+                });
         }
-        main()
-    }, [url])
+        main();
+    }, [url]);
 
     return (
         <Dialog open={open} onClose={setOpen} className="relative z-10">
@@ -49,5 +50,5 @@ export default function Example({ open, setOpen, url }) {
                 </div>
             </div>
         </Dialog>
-    )
+    );
 }

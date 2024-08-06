@@ -41,13 +41,13 @@ export default function Product({ products }) {
                             ))}
                         </div>
                         <div className='flex min-w-1/2 px-4 gap-4 justify-center'>
-                            <button className={`border-2 py-2 px-4 text-xl w-max h-max text-black rounded-md bg-blue-100 ${currentPage == 1 ? 'hidden' : 'block' }`} disabled={currentPage == 1} onClick={() => setCurrentPage(currentPage - 1)}>Prev</button>
-                            <button className={`border-2 py-2 px-4 text-xl w-max h-max text-white rounded-md bg-blue-700 ${currentPage == totalPages ? 'hidden' : 'block' }`} disabled={currentPage == totalPages} onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
+                            <button className={`border-2 py-2 px-4 text-xl w-max h-max text-black rounded-md bg-blue-100 ${currentPage == 1 ? 'hidden' : 'block'}`} disabled={currentPage == 1} onClick={() => setCurrentPage(currentPage - 1)}>Prev</button>
+                            <button className={`border-2 py-2 px-4 text-xl w-max h-max text-white rounded-md bg-blue-700 ${currentPage == totalPages ? 'hidden' : 'block'}`} disabled={currentPage == totalPages} onClick={() => setCurrentPage(currentPage + 1)}>Next</button>
                         </div>
                     </div>
                 </div>
             ) : (
-                <p>No products found.</p>
+                <p className='flex w-full justify-center text-3xl font-semibold'>No products found.</p>
             )}
         </div>
     );
