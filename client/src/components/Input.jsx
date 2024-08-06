@@ -6,6 +6,7 @@ import { PulseLoader } from 'react-spinners';
 
 const App = ({ setProducts, setProductUrls, error, setError, loading, setLoading }) => {
   const [domain, setDomain] = useState('');
+  const [count, setCount] = useState(0)
 
   const handleInputChange = (e) => {
     let temp = e.target.value;
@@ -24,6 +25,10 @@ const App = ({ setProducts, setProductUrls, error, setError, loading, setLoading
     } catch (err) {
       console.log(err.code);
       toast.error('Error fetching robots.txt, check your domain')
+      if(count % 3 !== 0) {
+        toast.info('If Problem still presists, check this - https://cors-anywhere.herokuapp.com/corsdemo')
+        setCount(0)
+      }
       setError('404')
       setLoading(false)
     }
@@ -113,6 +118,7 @@ const App = ({ setProducts, setProductUrls, error, setError, loading, setLoading
 
   const handleSubmit = (e) => {
     setLoading(true);
+    setCount(count + 1)
     e.preventDefault();
     setError('');
     setProductUrls([]);
