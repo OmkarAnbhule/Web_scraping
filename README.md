@@ -1,6 +1,6 @@
-# Project Title
+# Scrap Shop
 
-Scrap Shop
+Web Scraping Shopify addons
 
 ## Description
 
