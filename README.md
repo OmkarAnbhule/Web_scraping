@@ -64,7 +64,7 @@ This project is a web scraping application built using React with Vite for the c
 
 To scrape data from Shopify addons, simply run the server and access the client interface. If you encounter any CORS errors while scraping, please click the following link to resolve the issue:
 
-- [CORS Proxy Link]https://cors-anywhere.herokuapp.com/corsdemo
+- [CORS Proxy Link](https://cors-anywhere.herokuapp.com/corsdemo)
 
 ## Deployed Link
 
